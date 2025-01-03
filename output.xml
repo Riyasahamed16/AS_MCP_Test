@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.1 on win32)" generated="2025-01-03T13:02:43.314611" rpa="false" schemaversion="5">
+<suite id="s1" name="AS MCP Test" source="c:\TestAutomation\TASK\AS_MCP_Test.robot">
+<test id="s1-t1" name="Run Full API Test Suite" line="19">
+<kw name="Test Pair API">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:43.714541" level="INFO">Creating Session using : alias=api_session, url=https://192.168.254.92, headers={'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api_session</arg>
+<arg>${BASE_URL}</arg>
+<arg>headers=${headers}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-01-03T13:02:43.714108" elapsed="0.003023"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:44.810578" level="INFO">PUT Request : url=https://192.168.254.92/api/mcp/v1/pair 
+ path_url=/api/mcp/v1/pair 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json', 'Content-Length': '89'} 
+ body=b'"{\\"authToken\\": \\"Token\\", \\"sensorData\\": [{\\"theta\\": 10, \\"phi\\": 180, \\"rho\\": 0}]}"' 
+ </msg>
+<msg time="2025-01-03T13:02:44.810931" level="INFO">PUT Response : url=https://192.168.254.92/api/mcp/v1/pair 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json'} 
+ body=Content-Length: 4
+
+ {"status":"ok"}
+
+ 
+ </msg>
+<msg time="2025-01-03T13:02:44.811109" level="INFO">C:\Users\RIYAS AHAMED\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host '192.168.254.92'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-01-03T13:02:44.811537" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api_session</arg>
+<arg>${PAIR_ENDPOINT}</arg>
+<arg>json=${pair_data}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-01-03T13:02:43.717442" elapsed="1.094243"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:44.812670" level="INFO">200</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:44.812006" elapsed="0.000803"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:44.813473" level="INFO">Content-Length: 4
+
+ {"status":"ok"}
+
+</msg>
+<arg>${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:44.812959" elapsed="0.000640"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-01-03T13:02:44.814216" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-01-03T13:02:44.813758" elapsed="0.000604"/>
+</kw>
+<doc>This test verifies the pairing endpoint.</doc>
+<status status="PASS" start="2025-01-03T13:02:43.713457" elapsed="1.101037"/>
+</kw>
+<kw name="Test Table Info API">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:44.816018" level="INFO">Creating Session using : alias=mysession, url=https://192.168.254.92, headers={'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=30, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>verify=False</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-01-03T13:02:44.815555" elapsed="0.000749"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:44.816603" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2025-01-03T13:02:45.908679" level="INFO">GET Request : url=https://192.168.254.92/api/mcp/v1/table-info 
+ path_url=/api/mcp/v1/table-info 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg time="2025-01-03T13:02:45.909078" level="INFO">GET Response : url=https://192.168.254.92/api/mcp/v1/table-info 
+ status=401, reason=Unauthorized 
+ headers={'Content-Type': 'application/json'} 
+ body=Content-Length: 4
+
+ {"status":"Bad data"}
+
+ 
+ </msg>
+<msg time="2025-01-03T13:02:45.909231" level="INFO">C:\Users\RIYAS AHAMED\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host '192.168.254.92'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-01-03T13:02:45.909562" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${TABLE_INFO}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2025-01-03T13:02:44.816495" elapsed="1.093204"/>
+</kw>
+<doc>This test retrieves the table info details.</doc>
+<status status="PASS" start="2025-01-03T13:02:44.815169" elapsed="1.094733"/>
+</kw>
+<kw name="Test Table Config API">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:45.911507" level="INFO">Creating Session using : alias=api, url=https://192.168.254.92, headers={'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=30, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-01-03T13:02:45.911023" elapsed="0.000802"/>
+</kw>
+<kw name="Put Request" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:45.912219" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2025-01-03T13:02:46.997928" level="INFO">PUT Request : url=https://192.168.254.92/api/mcp/v1/table-config 
+ path_url=/api/mcp/v1/table-config 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json', 'Content-Length': '159'} 
+ body=b'"{\\"powerLimit\\": \\"100\\", \\"vInit\\": \\"10\\", \\"vMax\\": \\"90\\", \\"acceleration\\": \\"10\\", \\"thetaMin\\": \\"5\\", \\"thetaMax\\": \\"15\\", \\"phiHysterisis\\": \\"3\\"}"' 
+ </msg>
+<msg time="2025-01-03T13:02:46.998236" level="INFO">PUT Response : url=https://192.168.254.92/api/mcp/v1/table-config 
+ status=401, reason=Unauthorized 
+ headers={'Content-Type': 'application/json'} 
+ body=Content-Length: 4
+
+ {"status":"Bad data"}
+
+ 
+ </msg>
+<msg time="2025-01-03T13:02:46.998375" level="INFO">C:\Users\RIYAS AHAMED\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host '192.168.254.92'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-01-03T13:02:46.999037" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>${TABLE_CONFIG}</arg>
+<arg>json=${Table_Config_BODY}</arg>
+<doc>*DEPRECATED* Please use `PUT On Session` instead.</doc>
+<status status="PASS" start="2025-01-03T13:02:45.912083" elapsed="1.087152"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:47.000289" level="INFO">Status Code: 401</msg>
+<arg>Status Code: ${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:46.999505" elapsed="0.001105"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:47.001876" level="INFO">Response Body: Content-Length: 4
+
+ {"status":"Bad data"}
+
+</msg>
+<arg>Response Body: ${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:47.000942" elapsed="0.001199"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response.text}</arg>
+<arg>"status"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-01-03T13:02:47.002338" elapsed="0.000597"/>
+</kw>
+<doc>This test updates the table configuration.</doc>
+<status status="PASS" start="2025-01-03T13:02:45.910567" elapsed="1.092500"/>
+</kw>
+<kw name="Test Table Mode API">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:47.004915" level="INFO">Creating Session using : alias=mysession, url=https://192.168.254.92, headers={'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=30, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>verify=False</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-01-03T13:02:47.004332" elapsed="0.000917"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-01-03T13:02:47.005830" level="INFO">${payload} = {'mode': 'Auto'}</msg>
+<var>${payload}</var>
+<arg>mode=Auto</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-01-03T13:02:47.005468" elapsed="0.000461"/>
+</kw>
+<kw name="Put Request" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:47.006170" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2025-01-03T13:02:48.126229" level="INFO">PUT Request : url=https://192.168.254.92/api/mcp/v1/table-mode 
+ path_url=/api/mcp/v1/table-mode 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json', 'Content-Length': '16'} 
+ body=b'{"mode": "Auto"}' 
+ </msg>
+<msg time="2025-01-03T13:02:48.126488" level="INFO">PUT Response : url=https://192.168.254.92/api/mcp/v1/table-mode 
+ status=401, reason=Unauthorized 
+ headers={'Content-Type': 'application/json'} 
+ body=Content-Length: 4
+
+ {"status":"Bad data"}
+
+ 
+ </msg>
+<msg time="2025-01-03T13:02:48.126625" level="INFO">C:\Users\RIYAS AHAMED\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host '192.168.254.92'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-01-03T13:02:48.126950" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${TABLE_MODE}</arg>
+<arg>json=${payload}</arg>
+<doc>*DEPRECATED* Please use `PUT On Session` instead.</doc>
+<status status="PASS" start="2025-01-03T13:02:47.006072" elapsed="1.120988"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:48.127975" level="INFO">Table Mode set to Auto: Content-Length: 4
+
+ {"status":"Bad data"}
+
+</msg>
+<arg>Table Mode set to Auto: ${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:48.127318" elapsed="0.000792"/>
+</kw>
+<doc>This test sets the table mode.</doc>
+<status status="PASS" start="2025-01-03T13:02:47.003751" elapsed="1.124477"/>
+</kw>
+<kw name="Test Target Position API">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:48.129749" level="INFO">Creating Session using : alias=mysession, url=https://192.168.254.92, headers={'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=30, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>verify=False</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-01-03T13:02:48.129195" elapsed="0.000923"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-01-03T13:02:48.130887" level="INFO">${payload} = {'Angle': "[{'Theta': '15', 'Phi': '180', 'R': '10'}]"}</msg>
+<var>${payload}</var>
+<arg>Angle=[{'Theta': '15', 'Phi': '180', 'R': '10'}]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-01-03T13:02:48.130455" elapsed="0.000573"/>
+</kw>
+<kw name="Put Request" owner="RequestsLibrary">
+<msg time="2025-01-03T13:02:48.131344" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2025-01-03T13:02:49.221849" level="INFO">PUT Request : url=https://192.168.254.92/api/mcp/v1/target-position 
+ path_url=/api/mcp/v1/target-position 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer 123e4567e89b12d3a456426614174000', 'Content-Type': 'application/json', 'Content-Length': '55'} 
+ body=b'{"Angle": "[{\'Theta\': \'15\', \'Phi\': \'180\', \'R\': \'10\'}]"}' 
+ </msg>
+<msg time="2025-01-03T13:02:49.222217" level="INFO">PUT Response : url=https://192.168.254.92/api/mcp/v1/target-position 
+ status=401, reason=Unauthorized 
+ headers={'Content-Type': 'application/json'} 
+ body=Content-Length: 4
+
+ {"status":"Bad data"}
+
+ 
+ </msg>
+<msg time="2025-01-03T13:02:49.222407" level="INFO">C:\Users\RIYAS AHAMED\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host '192.168.254.92'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-01-03T13:02:49.222883" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${TARGET_POSITION}</arg>
+<arg>json=${payload}</arg>
+<doc>*DEPRECATED* Please use `PUT On Session` instead.</doc>
+<status status="PASS" start="2025-01-03T13:02:48.131228" elapsed="1.091884"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-03T13:02:49.224146" level="INFO">Target Position set: Content-Length: 4
+
+ {"status":"Bad data"}
+
+</msg>
+<arg>Target Position set: ${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-03T13:02:49.223441" elapsed="0.000838"/>
+</kw>
+<doc>This test sets the target position.</doc>
+<status status="PASS" start="2025-01-03T13:02:48.128767" elapsed="1.095628"/>
+</kw>
+<doc>This test suite runs the full API flow:
+Pair -&gt; Table Info -&gt; Table Config -&gt; Table Mode -&gt; Target Position</doc>
+<status status="PASS" start="2025-01-03T13:02:43.712380" elapsed="5.512511"/>
+</test>
+<status status="PASS" start="2025-01-03T13:02:43.319444" elapsed="5.906915"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="AS MCP Test">AS MCP Test</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-01-03T13:02:44.816603" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2025-01-03T13:02:45.912219" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2025-01-03T13:02:47.006170" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2025-01-03T13:02:48.131344" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+</errors>
+</robot>
